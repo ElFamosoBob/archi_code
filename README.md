@@ -6,12 +6,14 @@ Matteo
 
 Chaque microservice métier a les fonctions de base inclues : GET, POST, PUT, DELETE. Certains microservices ont des fonctionnalités supplémentaires, comme **order** qui, quand on créer une commande vérifie que le client existe en demander au microservice **customer** qui regarde sa db, et vérifie que le stock est suffisant en demandant au microservice **article** qui regarde sa db. 
 
-- **article** 8086 Gestion du stock (ajout d'articles, suppressions, mise à jour) - vérification du stock pour un article donné - liste des commandes en attente d'approvisionnement   
-- **customer** 8087 Gérer les clients (enregistrement, suppression, mise à jour) 
-- **order** 8080 Gérer les commandes (création, suppression, mise à jour) -  à la création, vérifie le client et le stock puis fixe le statut validee, en_cours ou rejetee - liste des commandes par statut (GET /orders/status/{status})  
+### Les microservices, leur port et leurs fonctionnalités :
 
-- **msdiscovery** 8761 - service discovery eureka  
-- **config** 8888 service de configuration - hébergé sur git 
+- **article** - 8086 - Gestion du stock (ajout d'articles, suppressions, mise à jour) - vérification du stock pour un article donné - liste des commandes en attente d'approvisionnement   
+- **customer** - 8087 - Gérer les clients (enregistrement, suppression, mise à jour) 
+- **order** - 8080 - Gérer les commandes (création, suppression, mise à jour) -  à la création, vérifie le client et le stock puis fixe le statut validee, en_cours ou rejetee - liste des commandes par statut (GET /orders/status/{status})  
+
+- **msdiscovery** - 8761 - service discovery eureka  
+- **config** - 8888 - service de configuration - hébergé sur git 
 
 ## Organisation des fichiers
 
