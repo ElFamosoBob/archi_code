@@ -7,7 +7,7 @@ article 8086 Gestion du stock (ajout d'articles, suppressions, mise à jour) - v
 customer 8087 Gérer les clients (enregistrement, suppression, mise à jour) 
 order 8080 Gérer les commandes (création, suppression, mise à jour) -  à la création, vérifie le client et le stock puis fixe le statut validee, en_cours ou rejetee - liste des commandes par statut (GET /orders/status/{status})  
 
-msdiscovery 8761 - service discovery eureka 
+msdiscovery 8761 - service discovery eureka  
 config 8888 service de configuration - hébergé sur git 
 
 ## Explication du nombre de microservices
