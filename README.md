@@ -1,9 +1,10 @@
 # archi_code
-If you want to take a look at config, go to my other repositery, architecture_service.
 
 Matteo
 
 ## Microservices
+
+Chaque microservice métier a les fonctions de base inclues : GET, POST, PUT, DELETE. Certains microservices ont des fonctionnalités supplémentaires, comme order qui quand on créer une commande vérifie que le client existe en demander au microservice customer qui regarde à sa db, et vérifie que le stock est suffisant en demandant au microservice article qui regarde sa db. 
 
 - article 8086 Gestion du stock (ajout d'articles, suppressions, mise à jour) - vérification du stock pour un article donné - liste des commandes en attente d'approvisionnement   
 - customer 8087 Gérer les clients (enregistrement, suppression, mise à jour) 
@@ -11,6 +12,10 @@ Matteo
 
 - msdiscovery 8761 - service discovery eureka  
 - config 8888 service de configuration - hébergé sur git 
+
+## Organisation des fichiers
+
+Pour les 5 microservices, il y a un projet différent. ArticleManagement est le projet pour le microservice article, ConfigServer pour le microservice config... Et config est le dossier où il y a  les .properties de chaque microservice métier. Ce dossier config est accesible ici :  https://github.com/ElFamosoBob/architecture_service
 
 ## Explication du nombre de microservices
 
@@ -22,27 +27,4 @@ Choix de db décentralisées : Les db décentralisés demandent des appels rése
 
 ## Architecture 
 
-```mermaid
-flowchart TB
-    git[("Dépôt Git")] --- config["config-service · 8888<br/>configuration lue dans Git"]
-    discovery["discovery-service · 8761<br/>annuaire Eureka"]
-
-    subgraph metier["Microservices métier"]
-        customer["customer · 8087"]
-        order["order · 8080"]
-        article["article · 8086"]
-        customersdb[("customersDb")]
-        ordersdb[("ordersDb")]
-        articledb[("articleDb")]
-
-        order -->|vérifie le client| customer
-        order -->|vérifie le stock| article
-        article -->|commandes en attente| order
-        customer --- customersdb
-        order --- ordersdb
-        article --- articledb
-    end
-
-    config -->|fournit la configuration| metier
-    metier <-.->|enregistrement et découverte| discovery
-```
+![Architecture](db_architecture.png)
