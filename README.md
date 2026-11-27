@@ -1,6 +1,8 @@
 # archi_code
 If you want to take a look at config, go to my other repositery, architecture_service.
 
+Matteo
+
 ## Microservices
 
 - article 8086 Gestion du stock (ajout d'articles, suppressions, mise à jour) - vérification du stock pour un article donné - liste des commandes en attente d'approvisionnement   
@@ -14,9 +16,9 @@ If you want to take a look at config, go to my other repositery, architecture_se
 
 Pourquoi cette division ? La vérification du stock était commun à OrderService / InventoryService donc j'ai fait un 3e service dédié uniquement au stock (Article). Ensuite Order et Inventory Service avaient déjà un périmètre bien défini donc j'ai gardé. 
 
-## Choix de la db décentralisée
+## Choix des db décentralisées
 
-Choix de db décentralisés : Les db décentralisés demandent des appels réseau (order-service interroge customer-service et inventory-service), et la cohérence n'est plus garantie par une transaction unique : si le stock change entre la vérification et la création d'une commande, il y a un problème. Mais elles sont plus simple à comprendre, à maintenir et un peu plus résiliente. Donc j'ai considéré que pour un exercice comme celui-ci, avoir 3 db différentes était acceptable. 
+Choix de db décentralisées : Les db décentralisés demandent des appels réseau (order-service interroge customer-service et inventory-service), et la cohérence n'est plus garantie par une transaction unique : si le stock change entre la vérification et la création d'une commande, il y a un problème. C'est donc plus complexe à gérer qu'une db centralisée. Mais elles séparent mieux les microservices, permettant par exemple de travailler sur une db en bloquant seulement un microservices et pas tous.  On a aussi plus de résilience, si une db est down, seulement un microservice est affecté. 
 
 ## Architecture 
 
